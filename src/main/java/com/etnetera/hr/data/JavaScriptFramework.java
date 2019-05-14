@@ -1,54 +1,91 @@
 package com.etnetera.hr.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Date;
 
 /**
  * Simple data entity describing basic properties of every JavaScript framework.
- * 
- * @author Etnetera
  *
+ * @author Etnetera
  */
 @Entity
 public class JavaScriptFramework {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Column(nullable = false, length = 30)
-	private String name;
+    @Column(nullable = false, length = 30)
+    private String name;
 
-	
-	public JavaScriptFramework() {
-	}
+    @Column(nullable = false, length = 30)
+    private String version;
 
-	public JavaScriptFramework(String name) {
-		this.name = name;
-	}
+    @Column(nullable = false, length = 30)
+    private String hypeLevel;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(nullable = false)
+    private Date deprecationDate;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public JavaScriptFramework() {
+    }
 
-	public String getName() {
-		return name;
-	}
+    public JavaScriptFramework(String name, String version, String hypeLevel, Date deprecationDate) {
+        this.name = name;
+        this.version = version;
+        this.hypeLevel = hypeLevel;
+        this.deprecationDate = deprecationDate;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	@Override
-	public String toString() {
-		return "JavaScriptFramework [id=" + id + ", name=" + name + "]";
-	}
-		
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getHypeLevel() {
+        return hypeLevel;
+    }
+
+    public void setHypeLevel(String hypeLevel) {
+        this.hypeLevel = hypeLevel;
+    }
+
+    public Date getDeprecationDate() {
+        return deprecationDate;
+    }
+
+    public void setDeprecationDate(Date deprecationDate) {
+        this.deprecationDate = deprecationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "JavaScriptFramework{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", version='" + version + '\'' +
+                ", hypeLevel='" + hypeLevel + '\'' +
+                ", deprecationDate=" + deprecationDate +
+                '}';
+    }
+
 }
