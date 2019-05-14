@@ -40,15 +40,15 @@ public class JavaScriptFrameworkController {
         return framework.map(res -> ResponseEntity.ok().body(res))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
-    @PostMapping("/add")
+    
+    @PostMapping("/framework/add")
     public ResponseEntity<JavaScriptFramework> addFramework(@RequestBody JavaScriptFramework javaScriptFramework) {
         LOG.info("Request to create JavaScriptFramwork: {}", javaScriptFramework);
         JavaScriptFramework result = repository.save(javaScriptFramework);
         return ResponseEntity.ok().body(result);
     }
 
-    @PutMapping("/edit")
+    @PutMapping("/framework/edit")
     public ResponseEntity<JavaScriptFramework> updateFramework(@Valid @RequestBody JavaScriptFramework javaScriptFramework) {
         LOG.info("Request to update JavaScriptFramwork: {}", javaScriptFramework);
         JavaScriptFramework result = repository.save(javaScriptFramework);
