@@ -22,7 +22,7 @@ public class JavaScriptFramework {
     private String name;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "javaScriptFramework", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "javaScriptFramework", cascade = CascadeType.ALL)
     Collection<Version> versions;
 
     public JavaScriptFramework() {

@@ -21,7 +21,7 @@ public class Version {
     private Date deprecationDate;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "id", nullable = false)
     private JavaScriptFramework javaScriptFramework;
 
     public Version() {
