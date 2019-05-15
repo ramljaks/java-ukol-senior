@@ -6,10 +6,11 @@ import com.etnetera.hr.data.JavaScriptFramework;
 
 /**
  * Spring data repository interface used for accessing the data in database.
- * 
- * @author Etnetera
  *
+ * @author Etnetera
  */
 public interface JavaScriptFrameworkRepository extends CrudRepository<JavaScriptFramework, Long> {
+
+    Iterable<JavaScriptFramework> findAllByName(String name);
 
 }

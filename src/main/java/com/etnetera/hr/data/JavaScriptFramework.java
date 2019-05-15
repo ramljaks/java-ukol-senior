@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Simple data entity describing basic properties of every JavaScript framework.
@@ -11,7 +12,7 @@ import java.util.Collection;
  * @author Etnetera
  */
 @Entity
-public class JavaScriptFramework{
+public class JavaScriptFramework {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,7 @@ public class JavaScriptFramework{
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "javaScriptFramework")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "javaScriptFramework", cascade = CascadeType.ALL)
     Collection<Version> versions;
 
     public JavaScriptFramework() {
@@ -30,6 +31,12 @@ public class JavaScriptFramework{
     public JavaScriptFramework(String name) {
         this.name = name;
     }
+
+    public JavaScriptFramework(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
 
     public Long getId() {
         return id;
@@ -62,5 +69,19 @@ public class JavaScriptFramework{
                 ", name='" + name + '\'' +
                 ", versions=" + versions +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof JavaScriptFramework)) return false;
+        JavaScriptFramework that = (JavaScriptFramework) o;
+        return id.equals(that.id) &&
+                name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

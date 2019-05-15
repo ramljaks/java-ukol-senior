@@ -2,6 +2,7 @@ package com.etnetera.hr.data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 public class Version {
@@ -82,5 +83,22 @@ public class Version {
                 ", deprecationDate=" + deprecationDate +
                 ", javaScriptFramework=" + javaScriptFramework +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Version)) return false;
+        Version version1 = (Version) o;
+        return versionId.equals(version1.versionId) &&
+                version.equals(version1.version) &&
+                hypeLevel.equals(version1.hypeLevel) &&
+                deprecationDate.equals(version1.deprecationDate) &&
+                javaScriptFramework.equals(version1.javaScriptFramework);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(versionId, version, hypeLevel, deprecationDate, javaScriptFramework);
     }
 }

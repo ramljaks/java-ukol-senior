@@ -18,6 +18,7 @@ import java.util.Optional;
  * @author Etnetera
  */
 @RestController
+@RequestMapping("/framework")
 public class JavaScriptFrameworkController {
 
     private Logger LOG = LoggerFactory.getLogger(JavaScriptFramework.class);
@@ -29,33 +30,38 @@ public class JavaScriptFrameworkController {
         this.repository = repository;
     }
 
-    @GetMapping("/frameworks")
+    @GetMapping("/all")
     public Iterable<JavaScriptFramework> frameworks() {
         return repository.findAll();
     }
 
-    @GetMapping("/framework/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<JavaScriptFramework> getFramework(@PathVariable Long id) {
         Optional<JavaScriptFramework> framework = repository.findById(id);
         return framework.map(res -> ResponseEntity.ok().body(res))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    
-    @PostMapping("/framework/add")
+
+    @GetMapping("/name")
+    public Iterable<JavaScriptFramework> getFrameworkByName(@RequestParam String name) {
+        return repository.findAllByName(name);
+    }
+
+    @PostMapping("/add")
     public ResponseEntity<JavaScriptFramework> addFramework(@RequestBody JavaScriptFramework javaScriptFramework) {
         LOG.info("Request to create JavaScriptFramwork: {}", javaScriptFramework);
         JavaScriptFramework result = repository.save(javaScriptFramework);
         return ResponseEntity.ok().body(result);
     }
 
-    @PutMapping("/framework/edit")
+    @PutMapping("/edit")
     public ResponseEntity<JavaScriptFramework> updateFramework(@Valid @RequestBody JavaScriptFramework javaScriptFramework) {
         LOG.info("Request to update JavaScriptFramwork: {}", javaScriptFramework);
         JavaScriptFramework result = repository.save(javaScriptFramework);
         return ResponseEntity.ok().body(result);
     }
 
-    @DeleteMapping("/framework/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<JavaScriptFramework> deleteFramework(@PathVariable Long id) {
         LOG.info("Request to delete JavaScriptFramwork with id: {}", id);
         repository.deleteById(id);
