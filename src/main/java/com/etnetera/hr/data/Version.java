@@ -27,11 +27,19 @@ public class Version {
     public Version() {
     }
 
-    public Version(JavaScriptFramework javaScriptFramework, String version, String hypeLevel, Date deprecationDate) {
-        this.javaScriptFramework = javaScriptFramework;
+    public Version(String version, String hypeLevel, Date deprecationDate, JavaScriptFramework javaScriptFramework) {
         this.version = version;
         this.hypeLevel = hypeLevel;
         this.deprecationDate = deprecationDate;
+        this.javaScriptFramework = javaScriptFramework;
+    }
+
+    public Version(Long versionId, String version, String hypeLevel, Date deprecationDate, JavaScriptFramework javaScriptFramework) {
+        this.versionId = versionId;
+        this.version = version;
+        this.hypeLevel = hypeLevel;
+        this.deprecationDate = deprecationDate;
+        this.javaScriptFramework = javaScriptFramework;
     }
 
     public JavaScriptFramework getJavaScriptFramework() {
